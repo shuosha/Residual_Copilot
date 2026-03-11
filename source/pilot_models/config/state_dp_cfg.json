@@ -1,0 +1,213 @@
+{
+    "dataset": {
+        "repo_id": null,
+        "root": null,
+        "episodes": null,
+        "image_transforms": {
+            "enable": false,
+            "max_num_transforms": 3,
+            "random_order": false,
+            "tfs": {
+                "brightness": {
+                    "weight": 1.0,
+                    "type": "ColorJitter",
+                    "kwargs": {
+                        "brightness": [
+                            0.8,
+                            1.2
+                        ]
+                    }
+                },
+                "contrast": {
+                    "weight": 1.0,
+                    "type": "ColorJitter",
+                    "kwargs": {
+                        "contrast": [
+                            0.8,
+                            1.2
+                        ]
+                    }
+                },
+                "saturation": {
+                    "weight": 1.0,
+                    "type": "ColorJitter",
+                    "kwargs": {
+                        "saturation": [
+                            0.5,
+                            1.5
+                        ]
+                    }
+                },
+                "hue": {
+                    "weight": 1.0,
+                    "type": "ColorJitter",
+                    "kwargs": {
+                        "hue": [
+                            -0.05,
+                            0.05
+                        ]
+                    }
+                },
+                "sharpness": {
+                    "weight": 1.0,
+                    "type": "SharpnessJitter",
+                    "kwargs": {
+                        "sharpness": [
+                            0.5,
+                            1.5
+                        ]
+                    }
+                },
+                "affine": {
+                    "weight": 1.0,
+                    "type": "RandomAffine",
+                    "kwargs": {
+                        "degrees": [
+                            -5.0,
+                            5.0
+                        ],
+                        "translate": [
+                            0.05,
+                            0.05
+                        ]
+                    }
+                }
+            }
+        },
+        "revision": null,
+        "use_imagenet_stats": true,
+        "video_backend": "torchcodec",
+        "streaming": false
+    },
+    "env": null,
+    "policy": {
+        "type": "diffusion",
+        "n_obs_steps": 1,
+        "input_features": {
+            "observation.state": {
+                "type": "STATE",
+                "shape": [
+                    14
+                ]
+            },
+            "observation.environment_state": {
+                "type": "ENV",
+                "shape": [
+                    6
+                ]
+            }
+        },
+        "output_features": {
+            "action": {
+                "type": "ACTION",
+                "shape": [
+                    8
+                ]
+            }
+        },
+        "device": "cuda",
+        "use_amp": false,
+        "push_to_hub": true,
+        "repo_id": "1218_peginsert_1000_v1",
+        "private": null,
+        "tags": null,
+        "license": null,
+        "pretrained_path": null,
+        "horizon": 16,
+        "n_action_steps": 8,
+        "normalization_mapping": {
+            "VISUAL": "MEAN_STD",
+            "STATE": "MIN_MAX",
+            "ACTION": "MIN_MAX"
+        },
+        "drop_n_last_frames": 7,
+        "vision_backbone": "resnet18",
+        "crop_shape": [
+            84,
+            84
+        ],
+        "crop_is_random": true,
+        "pretrained_backbone_weights": null,
+        "use_group_norm": true,
+        "spatial_softmax_num_keypoints": 32,
+        "use_separate_rgb_encoder_per_camera": false,
+        "down_dims": [
+            512,
+            1024,
+            2048
+        ],
+        "kernel_size": 5,
+        "n_groups": 8,
+        "diffusion_step_embed_dim": 128,
+        "use_film_scale_modulation": true,
+        "noise_scheduler_type": "DDPM",
+        "num_train_timesteps": 100,
+        "beta_schedule": "squaredcos_cap_v2",
+        "beta_start": 0.0001,
+        "beta_end": 0.02,
+        "prediction_type": "epsilon",
+        "clip_sample": true,
+        "clip_sample_range": 1.0,
+        "num_inference_steps": 10,
+        "do_mask_loss_for_padding": false,
+        "optimizer_lr": 0.0001,
+        "optimizer_betas": [
+            0.95,
+            0.999
+        ],
+        "optimizer_eps": 1e-08,
+        "optimizer_weight_decay": 1e-06,
+        "scheduler_name": "cosine",
+        "scheduler_warmup_steps": 500
+    },
+    "output_dir": "logs/state-dp/",
+    "job_name": "",
+    "resume": false,
+    "seed": 1000,
+    "num_workers": 16,
+    "batch_size": 256,
+    "steps": 60000,
+    "eval_freq": 20000,
+    "log_freq": 200,
+    "tolerance_s": 0.0001,
+    "save_checkpoint": true,
+    "save_freq": 20000,
+    "use_policy_training_preset": true,
+    "optimizer": {
+        "type": "adam",
+        "lr": 0.0001,
+        "weight_decay": 1e-06,
+        "grad_clip_norm": 10.0,
+        "betas": [
+            0.95,
+            0.999
+        ],
+        "eps": 1e-08
+    },
+    "scheduler": {
+        "type": "diffuser",
+        "num_warmup_steps": 500,
+        "name": "cosine"
+    },
+    "eval": {
+        "n_episodes": 50,
+        "batch_size": 50,
+        "use_async_envs": false
+    },
+    "wandb": {
+        "enable": true,
+        "disable_artifact": true,
+        "project": "lerobot",
+        "entity": null,
+        "notes": null,
+        "run_id": null,
+        "mode": null
+    },
+    "use_rabc": false,
+    "rabc_progress_path": null,
+    "rabc_kappa": 0.01,
+    "rabc_epsilon": 1e-06,
+    "rabc_head_mode": "sparse",
+    "rename_map": {},
+    "checkpoint_path": null
+}

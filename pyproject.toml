@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "residual_copilot"
+version = "0.1.0"
+description = "Residual RL copilot for XArm 6 assembly tasks (IsaacLab)"
+license = { text = "Apache-2.0" }
+requires-python = "==3.11.*"
+dependencies = [
+    "isaaclab[isaacsim,all]==2.3.2.post1",
+    "torch==2.7.0",
+    "torchvision==0.22.0",
+    "sapien==2.2.2",
+    "psutil",
+    "rl-games @ git+https://github.com/isaac-sim/rl_games.git@python3.11",
+    "gym",
+    "lerobot",
+    "numpy==1.26.0",
+    "transformers>=4.57.1,<5.0.0",
+    "scikit-learn",
+]
+
+[[tool.uv.index]]
+name = "nvidia"
+url = "https://pypi.nvidia.com"
+explicit = false
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv]
+environments = ["sys_platform == 'linux' and platform_machine == 'x86_64' and implementation_name == 'cpython'"]
+
+[tool.uv.sources]
+isaaclab = { index = "nvidia" }
+torch = [{ index = "pytorch-cu128" }]
+torchvision = [{ index = "pytorch-cu128" }]
+lerobot = { path = "third_party/lerobot", editable = true }
+
+[tool.setuptools]
+package-dir = { "residual_copilot" = "source" }
+packages = ["residual_copilot"]

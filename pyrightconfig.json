@@ -1,0 +1,14 @@
+{
+    "venvPath": ".",
+    "venv": ".venv",
+    "pythonVersion": "3.11",
+    "extraPaths": [
+        "source",
+        "third_party/lerobot/src"
+    ],
+    "paths": {
+        "residual_copilot/*": ["source/*"]
+    },
+    "reportMissingImports": false,
+    "reportMissingModuleSource": false
+}

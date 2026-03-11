@@ -1,0 +1,11 @@
+{
+    "min_horizon": 1,
+    "max_horizon": 15,
+    "pad": true,
+    "knn_k": 10,
+    "knn_tau": 0.3,
+    "interp_gamma": 0.5,
+    "pos_weight": 5.0,
+    "ang_weight": 0.02,
+    "grip_weight": 5.0
+}
